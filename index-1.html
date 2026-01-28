@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errol Kotas | Order Kota Chips Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --kfc-red: #E4002B;
+            --kfc-white: #FFFFFF;
+            --kfc-black: #000000;
+            --kfc-gold: #FFC72C;
+            --kfc-gray: #F5F5F5;
+            --kfc-dark-gray: #333333;
+            --success-green: #28a745;
+            --whatsapp-green: #25D366;
+            --email-blue: #4285F4;
+        }
+        
+        body {
+            background-color: var(--kfc-white);
+            color: var(--kfc-dark-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--kfc-red);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--kfc-white);
+            font-size: 2.5rem;
+            background-color: var(--kfc-black);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo-text {
+            color: var(--kfc-white);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        /* Main Navigation */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            background-color: var(--kfc-black);
+            border-radius: 50px;
+            padding: 5px;
+            gap: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-links a {
+            color: var(--kfc-white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .nav-links a i {
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--kfc-red);
+            color: var(--kfc-white);
+            transform: translateY(-2px);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--kfc-white);
+            font-size: 1.5rem;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--kfc-gold);
+            color: var(--kfc-black);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .order-btn {
+            background-color: var(--kfc-gold);
+            color: var(--kfc-black);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .order-btn:hover {
+            background-color: var(--kfc-white);
+            transform: scale(1.05);
+        }
+        
+        /* Floating Order Button */
+        .floating-order-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--whatsapp-green), #128C7E);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating-order-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+        
+        .floating-order-btn span {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background-color: var(--kfc-red);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .floating-order-btn:hover span {
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1623241891379-321b0b367c82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--kfc-white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--kfc-white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero h2 span {
+            color: var(--kfc-gold);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--kfc-red);
+            color: var(--kfc-white);
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--kfc-gold);
+            color: var(--kfc-black);
+            transform: translateY(-3px);
+        }
+        
+        /* Category Navigation */
+        .category-nav {
+            background-color: var(--kfc-gray);
+            padding: 20px 0;
+            border-bottom: 3px solid var(--kfc-red);
+        }
+        
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+            background-color: var(--kfc-white);
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--kfc-dark-gray);
+        }
+        
+        .category-item:hover, .category-item.active {
+            background-color: var(--kfc-red);
+            color: var(--kfc-white);
+            transform: translateY(-5px);
+        }
+        
+        .category-item i {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        
+        .category-item span {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* Product Grid */
+        .products-section {
+            padding: 80px 0;
+            background-color: var(--kfc-white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--kfc-black);
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+            font-weight: 800;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background-color: var(--kfc-red);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--kfc-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            background-color: var(--kfc-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--kfc-red);
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--kfc-red);
+            color: var(--kfc-white);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            color: var(--kfc-black);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: 800;
+            color: var(--kfc-red);
+            font-size: 1.4rem;
+        }
+        
+        .add-to-cart {
+            background-color: var(--kfc-red);
+            color: var(--kfc-white);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--kfc-black);
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .cart-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .cart-content {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateY(50px);
+            transition: transform 0.4s;
+        }
+        
+        .cart-modal.active .cart-content {
+            transform: translateY(0);
+        }
+        
+        .cart-header {
+            background-color: var(--kfc-red);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-header h3 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close-cart:hover {
+            transform: rotate(90deg);
+        }
+        
+        .cart-items {
+            padding: 20px;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            background-color: var(--kfc-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--kfc-red);
+            font-size: 1.5rem;
+        }
+        
+        .cart-item-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            font-weight: bold;
+            color: var(--kfc-red);
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--kfc-gray);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--kfc-red);
+            color: white;
+        }
+        
+        .remove-item {
+            color: #ff4444;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            background-color: var(--kfc-gray);
+            border-top: 2px solid var(--kfc-red);
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .cart-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .cart-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .checkout-btn {
+            background-color: var(--success-green);
+            color: white;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #218838;
+        }
+        
+        .clear-cart-btn {
+            background-color: #ff4444;
+            color: white;
+        }
+        
+        .clear-cart-btn:hover {
+            background-color: #cc0000;
+        }
+        
+        /* Order Form Modal */
+        .order-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .order-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .order-content {
+            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateY(50px);
+            transition: transform 0.4s;
+            overflow-y: auto;
+        }
+        
+        .order-modal.active .order-content {
+            transform: translateY(0);
+        }
+        
+        .order-header {
+            background-color: var(--kfc-red);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .order-header h3 {
+            font-size: 1.8rem;
+        }
+        
+        .order-form {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--kfc-dark-gray);
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--kfc-red);
+            outline: none;
+        }
+        
+        .order-summary {
+            background-color: var(--kfc-gray);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .order-summary h4 {
+            margin-bottom: 10px;
+            color: var(--kfc-red);
+        }
+        
+        .order-items-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--kfc-red);
+            text-align: right;
+        }
+        
+        .order-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .order-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .order-method:hover, .order-method.active {
+            border-color: var(--kfc-red);
+            background-color: rgba(228, 0, 43, 0.05);
+        }
+        
+        .order-method i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .whatsapp-method i {
+            color: var(--whatsapp-green);
+        }
+        
+        .email-method i {
+            color: var(--email-blue);
+        }
+        
+        .order-method p {
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .submit-order-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--kfc-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-order-btn:hover {
+            background-color: var(--kfc-black);
+        }
+        
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: var(--success-green);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.5s;
+        }
+        
+        .success-message.show {
+            transform: translateX(0);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--kfc-black);
+            color: var(--kfc-white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--kfc-gold);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--kfc-gold);
+        }
+        
+        .contact-info i {
+            color: var(--kfc-gold);
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            background-color: var(--kfc-red);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--kfc-gold);
+            color: var(--kfc-black);
+        }
+        
+        .newsletter input {
+            padding: 12px 15px;
+            border-radius: 4px;
+            border: none;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            .header-actions {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            
+            .category-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cart-actions, .order-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .category-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--kfc-gray);
+            padding: 80px 0;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--kfc-red);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .star-rating {
+            color: var(--kfc-gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .testimonial-text {
+            color: var(--kfc-dark-gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--kfc-red);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-author h4 {
+            margin-bottom: 3px;
+            color: var(--kfc-black);
+        }
+        
+        .testimonial-author p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: white;
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(228, 0, 43, 0.05) 0%, rgba(255, 199, 44, 0.05) 100%);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--kfc-black);
+            font-weight: 800;
+        }
+        
+        .about-content > p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .feature {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature i {
+            color: var(--kfc-red);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .feature h3 {
+            color: var(--kfc-black);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .feature p {
+            color: #999;
+            font-size: 0.95rem;
+        }
+        
+        .image-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, var(--kfc-red), var(--kfc-gold));
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-placeholder i {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .image-placeholder h3 {
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card {
+            animation: slideInUp 0.5s ease-out;
+        }
+        
+        /* Responsive Testimonials */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-placeholder {
+                height: 300px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .testimonial-card {
+            animation: fadeInScale 0.6s ease-out;
+        }
+        
+        .floating-order-btn {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-message {
+            animation: slideDown 0.4s ease-out;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>FRAMOR KOTAS</h1>
+                    <p>Premium Kota Chips & Fast Food....Laha utatwa kunandzika!</p>
+                </div>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="main-nav">
+                <div class="nav-links">
+                    <a href="#snacks" class="active">
+                        <i class="fas fa-cookie-bite"></i>
+                        <span>SNACKS</span>
+                    </a>
+                    <a href="#kota-chips">
+                        <i class="fas fa-hotdog"></i>
+                        <span>KOTA & CHIPS</span>
+                    </a>
+                    <a href="#drinks">
+                        <i class="fas fa-wine-bottle"></i>
+                        <span>DRINKS</span>
+                    </a>
+                    <a href="#burger">
+                        <i class="fas fa-hamburger"></i>
+                        <span>BURGER</span>
+                    </a>
+                    <a href="#pizza">
+                        <i class="fas fa-pizza-slice"></i>
+                        <span>PIZZA</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="admin.html" style="text-decoration: none;">
+                    <button class="order-btn" title="Admin Panel" style="background-color: var(--kfc-black); padding: 8px 12px;">
+                        <i class="fas fa-lock"></i> Admin
+                    </button>
+                </a>
+                <button class="order-btn" id="order-now-btn">ORDER NOW</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Floating WhatsApp Order Button -->
+    <div class="floating-order-btn" id="floating-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Order via WhatsApp</span>
+    </div>
+    
+    <!-- Category Navigation Bar -->
+    <div class="category-nav">
+        <div class="container category-container">
+            <a href="#snacks" class="category-item active">
+                <i class="fas fa-cookie-bite"></i>
+                <span>SNACKS</span>
+            </a>
+            <a href="#kota-chips" class="category-item">
+                <i class="fas fa-hotdog"></i>
+                <span>KOTA & CHIPS</span>
+            </a>
+            <a href="#drinks" class="category-item">
+                <i class="fas fa-wine-bottle"></i>
+                <span>DRINKS</span>
+            </a>
+            <a href="#burger" class="category-item">
+                <i class="fas fa-hamburger"></i>
+                <span>BURGER</span>
+            </a>
+            <a href="#pizza" class="category-item">
+                <i class="fas fa-pizza-slice"></i>
+                <span>PIZZA</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>CRISPY <span>KOTA CHIPS</span> & TASTY FAST FOOD</h2>
+            <p>Experience the ultimate fusion of crispy kota chips, juicy burgers, delicious pizzas, and refreshing drinks. Made fresh daily with premium ingredients and secret spices that will keep you coming back for more!</p>
+            <a href="#kota-chips" class="cta-button" id="hero-order-btn">ORDER ONLINE NOW</a>
+        </div>
+    </section>
+    
+    <!-- Kota & Chips Section -->
+    <section id="kota-chips" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>KOTA & CHIPS</h2>
+            </div>
+            
+            <div class="products-grid">
+                
+               <div class="product-card" data-category="kota-chips" data-name="Classic Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">BESTSELLER</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Kota</h3>
+                        <p>Our signature kota with crispy chips, Russian sausage, cheese, and special sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="45">R45.00</span>
+                            <button class="add-to-cart" data-product="Classic Kota" data-price="45">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="kota-chips" data-name="Chicken Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chicken Kota</h3>
+                        <p>Tender chicken strips, crispy chips, fresh veggies, and mayo dressing.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="55">R55.00</span>
+                            <button class="add-to-cart" data-product="Chicken Kota" data-price="55">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="kota-chips" data-name="Cheese Lover's Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">POPULAR</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cheese Lover's Kota</h3>
+                        <p>Extra cheese, crispy chips, Vienna sausages, and our special cheese sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="60">R60.00</span>
+                            <button class="add-to-cart" data-product="Cheese Lover's Kota" data-price="60">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="kota-chips" data-name="Spicy Chips">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Spicy Chips</h3>
+                        <p>Our famous crispy chips with peri-peri seasoning and special spicy dip.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="35">R35.00</span>
+                            <button class="add-to-cart" data-product="Spicy Chips" data-price="35">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </section>
+    
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+                <button class="close-cart" id="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be inserted here dynamically -->
+                <div class="empty-cart-message" style="text-align: center; padding: 40px 20px; color: #777;">
+                    <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Add some delicious items from our menu!</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">R0.00</span>
+                </div>
+                <div class="cart-actions">
+                    <button class="cart-btn clear-cart-btn" id="clear-cart">
+                        <i class="fas fa-trash-alt"></i> Clear Cart
+                    </button>
+                    <button class="cart-btn checkout-btn" id="checkout-btn">
+                        <i class="fas fa-check-circle"></i> Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Order Form Modal -->
+    <div class="order-modal" id="order-modal">
+        <div class="order-content">
+            <div class="order-header">
+                <h3><i class="fas fa-shopping-bag"></i> Complete Your Order</h3>
+            </div>
+            <form class="order-form" id="order-form">
+                <div class="form-group">
+                    <label for="customer-name"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="customer-name" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-phone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="customer-phone" required placeholder="Enter your phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-email"><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="customer-email" required placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-address"><i class="fas fa-map-marker-alt"></i> Delivery Address</label>
+                    <textarea id="customer-address" rows="3" required placeholder="Enter your full delivery address"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="delivery-time"><i class="fas fa-clock"></i> Preferred Delivery Time</label>
+                    <select id="delivery-time">
+                        <option value="asap">As Soon As Possible</option>
+                        <option value="30min">Within 30 minutes</option>
+                        <option value="1hour">Within 1 hour</option>
+                        <option value="2hours">Within 2 hours</option>
+                    </select>
+                </div>
+                
+                <div class="order-summary">
+                    <h4><i class="fas fa-receipt"></i> Order Summary</h4>
+                    <div class="order-items-list" id="order-items-list">
+                        <!-- Order items will be inserted here -->
+                    </div>
+                    <div class="order-total" id="order-summary-total">Total: R0.00</div>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-paper-plane"></i> Choose Order Method</label>
+                    <div class="order-methods">
+                        <div class="order-method whatsapp-method active" data-method="whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            <p>Order via WhatsApp</p>
+                            <small>Fast & Direct</small>
+                        </div>
+                        <div class="order-method email-method" data-method="email">
+                            <i class="fas fa-envelope"></i>
+                            <p>Order via Email</p>
+                            <small>Detailed receipt</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-order-btn">
+                    <i class="fas fa-paper-plane"></i> Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Success Message -->
+    <div class="success-message" id="success-message">
+        <i class="fas fa-check-circle" style="font-size: 2rem;"></i>
+        <div>
+            <h4 style="margin-bottom: 5px;">Order Placed Successfully!</h4>
+            <p id="success-message-text">Your order has been sent via WhatsApp.</p>
+        </div>
+    </div>
+    
+    <!-- Drinks Section -->
+    <section id="drinks" class="products-section" style="background-color: #f9f9f9;">
+        <div class="container">
+            <div class="section-title">
+                <h2>REFRESHING DRINKS</h2>
+            </div>
+            
+            <div class="products-grid">
+
+                 <!-- Products -->
+               
+                <div class="product-card" data-category="kota-chips" data-name="Classic Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">BESTSELLER</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Kota</h3>
+                        <p>Our signature kota with crispy chips, Russian sausage, cheese, and special sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="45">R45.00</span>
+                            <button class="add-to-cart" data-product="Classic Kota" data-price="45">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="kota-chips" data-name="Chicken Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chicken Kota</h3>
+                        <p>Tender chicken strips, crispy chips, fresh veggies, and mayo dressing.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="55">R55.00</span>
+                            <button class="add-to-cart" data-product="Chicken Kota" data-price="55">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="kota-chips" data-name="Cheese Lover's Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" width="370" height="300"></i>
+                        <div class="product-badge">POPULAR</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cheese Lover's Kota</h3>
+                        <p>Extra cheese, crispy chips, Vienna sausages, and our special cheese sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="60">R60.00</span>
+                            <button class="add-to-cart" data-product="Cheese Lover's Kota" data-price="60">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="kota-chips" data-name="Spicy Chips">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Spicy Chips</h3>
+                        <p>Our famous crispy chips with peri-peri seasoning and special spicy dip.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="35">R35.00</span>
+                            <button class="add-to-cart" data-product="Spicy Chips" data-price="35">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Burger Section -->
+    <section id="burger" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>DELICIOUS BURGERS</h2>
+            </div>
+            
+            <div class="products-grid">
+               <div class="product-card" data-category="kota-chips" data-name="Classic Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529561/framo1_hg4sqe.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">BESTSELLER</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Kota</h3>
+                        <p>Our signature kota with crispy chips, Russian sausage, cheese, and special sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="45">R45.00</span>
+                            <button class="add-to-cart" data-product="Classic Kota" data-price="45">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="kota-chips" data-name="Chicken Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chicken Kota</h3>
+                        <p>Tender chicken strips, crispy chips, fresh veggies, and mayo dressing.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="55">R55.00</span>
+                            <button class="add-to-cart" data-product="Chicken Kota" data-price="55">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="kota-chips" data-name="Chicken Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chicken Kota</h3>
+                        <p>Tender chicken strips, crispy chips, fresh veggies, and mayo dressing.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="55">R55.00</span>
+                            <button class="add-to-cart" data-product="Chicken Kota" data-price="55">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="kota-chips" data-name="Cheese Lover's Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg"></i>
+                        <div class="product-badge">POPULAR</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cheese Lover's Kota</h3>
+                        <p>Extra cheese, crispy chips, Vienna sausages, and our special cheese sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="60">R60.00</span>
+                            <button class="add-to-cart" data-product="Cheese Lover's Kota" data-price="60">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="kota-chips" data-name="Spicy Chips">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Spicy Chips</h3>
+                        <p>Our famous crispy chips with peri-peri seasoning and special spicy dip.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="35">R35.00</span>
+                            <button class="add-to-cart" data-product="Spicy Chips" data-price="35">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pizza Section -->
+    <section id="pizza" class="products-section" style="background-color: #f9f9f9;">
+        <div class="container">
+            <div class="section-title">
+                <h2>FRESHLY BAKED PIZZAS</h2>
+            </div>
+            
+            <div class="products-grid">
+                
+                <div class="product-card" data-category="kota-chips" data-name="Classic Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">BESTSELLER</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Kota</h3>
+                        <p>Our signature kota with crispy chips, Russian sausage, cheese, and special sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="45">R45.00</span>
+                            <button class="add-to-cart" data-product="Classic Kota" data-price="45">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="kota-chips" data-name="Chicken Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chicken Kota</h3>
+                        <p>Tender chicken strips, crispy chips, fresh veggies, and mayo dressing.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="55">R55.00</span>
+                            <button class="add-to-cart" data-product="Chicken Kota" data-price="55">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="kota-chips" data-name="Cheese Lover's Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg"></i>
+                        <div class="product-badge">POPULAR</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cheese Lover's Kota</h3>
+                        <p>Extra cheese, crispy chips, Vienna sausages, and our special cheese sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="60">R60.00</span>
+                            <button class="add-to-cart" data-product="Cheese Lover's Kota" data-price="60">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="kota-chips" data-name="Spicy Chips">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Spicy Chips</h3>
+                        <p>Our famous crispy chips with peri-peri seasoning and special spicy dip.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="35">R35.00</span>
+                            <button class="add-to-cart" data-product="Spicy Chips" data-price="35">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Snacks Section -->
+    <section id="snacks" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>TASTY SNACKS</h2>
+            </div>
+            
+            <div class="products-grid">
+                
+                <div class="product-card" data-category="kota-chips" data-name="Classic Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">BESTSELLER</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Kota</h3>
+                        <p>Our signature kota with crispy chips, Russian sausage, cheese, and special sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="45">R45.00</span>
+                            <button class="add-to-cart" data-product="Classic Kota" data-price="45">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="kota-chips" data-name="Chicken Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chicken Kota</h3>
+                        <p>Tender chicken strips, crispy chips, fresh veggies, and mayo dressing.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="55">R55.00</span>
+                            <button class="add-to-cart" data-product="Chicken Kota" data-price="55">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="kota-chips" data-name="Cheese Lover's Kota">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg"></i>
+                        <div class="product-badge">POPULAR</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cheese Lover's Kota</h3>
+                        <p>Extra cheese, crispy chips, Vienna sausages, and our special cheese sauce.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="60">R60.00</span>
+                            <button class="add-to-cart" data-product="Cheese Lover's Kota" data-price="60">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="kota-chips" data-name="Spicy Chips">
+                    <div class="product-img">
+                        <i class=><img src="https://res.cloudinary.com/duiqp2abl/image/upload/v1769529584/framo3_tnugdl.jpg" height="300px" width="370px"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Spicy Chips</h3>
+                        <p>Our famous crispy chips with peri-peri seasoning and special spicy dip.</p>
+                        <div class="product-quantity">
+                            <button class="qty-decrease">-</button>
+                            <input type="number" value="1" min="1" class="qty-input">
+                            <button class="qty-increase">+</button>
+                        </div>
+                        <div class="product-price">
+                            <span class="price" data-price="35">R35.00</span>
+                            <button class="add-to-cart" data-product="Spicy Chips" data-price="35">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Customer Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>CUSTOMER LOVE <span style="color: var(--kfc-red);">FRAMOR KOTAS</span></h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The kota chips are absolutely amazing! Crispy on the outside, perfect on the inside. Best in town!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TN</div>
+                        <div>
+                            <h4>Thandi N.</h4>
+                            <p>Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"WhatsApp ordering is so convenient! My order arrived hot and fresh within 30 minutes. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JM</div>
+                        <div>
+                            <h4>Jabu M.</h4>
+                            <p>Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The pizzas are incredible! Tried the Margherita and it was perfection. Will order again!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SB</div>
+                        <div>
+                            <h4>Siya B.</h4>
+                            <p>Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>ABOUT <span style="color: var(--kfc-red);">FRAMOR KOTAS</span></h2>
+                    <p>Welcome to Framor Kotas, your ultimate destination for premium kota chips and delicious fast food! With years of experience serving the community of Mbhekwana, we pride ourselves on delivering authentic flavors, quality ingredients, and exceptional customer service.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Fresh Ingredients</h3>
+                            <p>Made daily with premium, quality ingredients</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Fast Delivery</h3>
+                            <p>Quick and reliable WhatsApp ordering system</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Expert Chefs</h3>
+                            <p>Prepared by skilled and experienced chefs</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Best Prices</h3>
+                            <p>Quality food at affordable prices</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-restaurant"></i>
+                        <h3>Your Local Food Hub</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Special Offers Banner -->
+    <section class="offers-banner" style="background: linear-gradient(135deg, #E4002B 0%, #FF6B6B 100%); padding: 60px 0; text-align: center; color: white; margin-bottom: 0;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🎉 SPECIAL OFFER! 🎉</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">Order 5+ items and get 15% OFF your entire order!</p>
+            <p style="font-size: 1rem; opacity: 0.9;">Valid all week long • Delivery available • WhatsApp or Call to Order</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>FRAMOR KOTAS</h3>
+                    <p>We serve the crispiest, most delicious kota chips in town. Made fresh daily with quality ingredients and a whole lot of love.....Lah utatwa kunandzika!</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>ORDER METHODS</h3>
+                    <a href="tel:0609050450"><i class="fas fa-phone"></i> Call: 060 905 0450</a>
+                    <a href="https://wa.me/27609050450"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+                    <a href="mailto:morganfrans6@gmail.com"><i class="fas fa-envelope"></i> Email Order</a>
+                    <a href="#"><i class="fas fa-store"></i> Visit Our Store</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>CONTACT INFO</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 40056 Vhelemu street, Mbhekwana</p>
+                        <p><i class="fas fa-phone"></i> 060 905 0450</p>
+                        <p><i class="fas fa-envelope"></i> info@framorKotas.co.za</p>
+                        <p><i class="fas fa-clock"></i> Mon-Friday: 9am - 10pm</p>
+                        <p><i class="fas fa-clock"></i> Sat-Sun: 10am - 11pm</p>
+
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>NEWSLETTER</h3>
+                    <p>Subscribe to get special offers and updates</p>
+                    <div class="newsletter">
+                        <input type="email" id="newsletter-email" placeholder="Your email address">
+                        <button class="order-btn" style="width: 100%;">SUBSCRIBE</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Framor Kotas. All rights reserved. | This is a fully functional website demo with order system</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Cart Data Structure
+        let cart = [];
+        let orderMethod = 'whatsapp'; // Default order method
+      
+        
+        // Function to load products from API
+        async function loadProductsFromAPI() {
+            try {
+                const response = await fetch(`${API_URL}/products`);
+                if (response.ok) {
+                    allProductsCache = await response.json();
+                    return allProductsCache;
+                }
+            } catch (error) {
+                console.warn('Could not load from API, using fallback:', error);
+            }
+            return [];
+        }
+        
+        // Function to get products by category
+        async function getProductsByCategory(category) {
+            if (allProductsCache.length === 0) {
+                await loadProductsFromAPI();
+            }
+            
+            // Map section IDs to category values
+            const categoryMap = {
+                'snacks': 'snacks',
+                'kota-chips': 'kota',
+                'drinks': 'drinks',
+                'burger': 'burger',
+                'pizza': 'pizza'
+            };
+            
+            const categoryValue = categoryMap[category] || category;
+            return allProductsCache.filter(product => product.category === categoryValue);
+        }
+        
+        // DOM Elements
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        const cartCountElement = document.querySelector('.cart-count');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const clearCartButton = document.getElementById('clear-cart');
+        const checkoutButton = document.getElementById('checkout-btn');
+        const orderModal = document.getElementById('order-modal');
+        const orderForm = document.getElementById('order-form');
+        const orderItemsList = document.getElementById('order-items-list');
+        const orderSummaryTotal = document.getElementById('order-summary-total');
+        const successMessage = document.getElementById('success-message');
+        const successMessageText = document.getElementById('success-message-text');
+        const floatingWhatsApp = document.getElementById('floating-whatsapp');
+        const orderNowButton = document.getElementById('order-now-btn');
+        const heroOrderButton = document.getElementById('hero-order-btn');
+        
+        // Email and WhatsApp details
+        const businessEmail = 'morganfrans6@gmail.com';
+        const businessWhatsApp = '27609050450'; // South Africa format with country code
+        
+        // Initialize Cart
+        function initCart() {
+            const savedCart = localStorage.getItem('errolKotasCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+        
+        // Save Cart to Local Storage
+        function saveCart() {
+            localStorage.setItem('errolKotasCart', JSON.stringify(cart));
+        }
+        
+        // Update Cart Display
+        function updateCartDisplay() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart-message" style="text-align: center; padding: 40px 20px; color: #777;">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some delicious items from our menu!</p>
+                    </div>
+                `;
+            } else {
+                cartItemsContainer.innerHTML = '';
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-img">
+                            <i class="fas fa-${getProductIcon(item.id)}"></i>
+                        </div>
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">R${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn decrease-quantity" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn increase-quantity" data-id="${item.id}">+</button>
+                        </div>
+                        <button class="remove-item" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                // Add event listeners to new buttons
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        updateQuantity(id, -1);
+                    });
+                });
+                
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        updateQuantity(id, 1);
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        removeFromCart(id);
+                    });
+                });
+            }
+            
+            // Update cart total
+            const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            cartTotalElement.textContent = `R${cartTotal.toFixed(2)}`;
+            
+            // Save cart to localStorage
+            saveCart();
+        }
+        
+        // Get product icon based on ID
+        function getProductIcon(id) {
+            const iconMap = {
+                '1': 'hotdog',
+                '2': 'drumstick-bite',
+                '3': 'cheese',
+                '4': 'pepper-hot',
+                '5': 'wine-bottle',
+                '6': 'glass-water',
+                '7': 'ice-cream',
+                '8': 'leaf',
+                '9': 'hamburger',
+                '10': 'bacon',
+                '11': 'drumstick-bite',
+                '12': 'pizza-slice',
+                '13': 'pizza-slice',
+                '14': 'leaf',
+                '15': 'mushroom',
+                '16': 'fire',
+                '17': 'cookie',
+                '18': 'ring',
+                '19': 'shrimp',
+                '20': 'star'
+            };
+            return iconMap[id] || 'hamburger';
+        }
+        
+        // Add to Cart
+        function addToCart(productId, productName, productPrice) {
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: parseFloat(productPrice),
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            showSuccessMessage(`${productName} added to cart!`);
+        }
+        
+        // Update Quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                item.quantity += change;
+                
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+        
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartDisplay();
+            showSuccessMessage('Item removed from cart');
+        }
+        
+        // Clear Cart
+        function clearCart() {
+            cart = [];
+            updateCartDisplay();
+            showSuccessMessage('Cart cleared');
+        }
+        
+        // Show Success Message
+        function showSuccessMessage(message) {
+            successMessageText.textContent = message;
+            successMessage.classList.add('show');
+            
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Open Cart Modal
+        function openCartModal() {
+            cartModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close Cart Modal
+        function closeCartModal() {
+            cartModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Open Order Modal
+        function openOrderModal() {
+            if (cart.length === 0) {
+                showSuccessMessage('Please add items to your cart first');
+                openCartModal();
+                return;
+            }
+            
+            // Close cart modal if open
+            closeCartModal();
+            
+            // Update order summary
+            updateOrderSummary();
+            
+            // Open order modal
+            orderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Update Order Summary
+        function updateOrderSummary() {
+            orderItemsList.innerHTML = '';
+            let orderTotal = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                orderTotal += itemTotal;
+                
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>R${itemTotal.toFixed(2)}</span>
+                `;
+                orderItemsList.appendChild(orderItem);
+            });
+            
+            orderSummaryTotal.textContent = `Total: R${orderTotal.toFixed(2)}`;
+        }
+        
+        // Close Order Modal
+        function closeOrderModal() {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Set Order Method
+        function setOrderMethod(method) {
+            orderMethod = method;
+            
+            // Update UI
+            document.querySelectorAll('.order-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.querySelector(`.order-method[data-method="${method}"]`).classList.add('active');
+        }
+        
+        // Generate Order Message
+        function generateOrderMessage(customerData) {
+            let message = `*NEW ORDER - Errol Kotas*\n\n`;
+            message += `*Customer Details:*\n`;
+            message += `Name: ${customerData.name}\n`;
+            message += `Phone: ${customerData.phone}\n`;
+            message += `Email: ${customerData.email}\n`;
+            message += `Address: ${customerData.address}\n`;
+            message += `Delivery Time: ${customerData.deliveryTime}\n\n`;
+            
+            message += `*Order Items:*\n`;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                message += `${item.name} x ${item.quantity} - R${itemTotal.toFixed(2)}\n`;
+            });
+            
+            const orderTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            message += `\n*Order Total: R${orderTotal.toFixed(2)}*\n\n`;
+            message += `*Order Time:* ${new Date().toLocaleString()}\n`;
+            message += `Thank you for your order!`;
+            
+            return message;
+        }
+        
+        // Submit Order
+        function submitOrder(customerData) {
+            const orderMessage = generateOrderMessage(customerData);
+            
+            if (orderMethod === 'whatsapp') {
+                // Send via WhatsApp
+                const whatsappUrl = `https://wa.me/${businessWhatsApp}?text=${encodeURIComponent(orderMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                showSuccessMessage('Opening WhatsApp to send your order...');
+            } else {
+                // Send via Email
+                const subject = `New Order from ${customerData.name} - Errol Kotas`;
+                const mailtoLink = `mailto:${businessEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderMessage)}`;
+                window.location.href = mailtoLink;
+                showSuccessMessage('Opening email client to send your order...');
+            }
+            
+            // Clear cart after order
+            clearCart();
+            
+            // Close order modal
+            closeOrderModal();
+        }
+        
+        // Event Listeners
+        cartIcon.addEventListener('click', openCartModal);
+        closeCart.addEventListener('click', closeCartModal);
+        
+        // Close modals when clicking outside
+        cartModal.addEventListener('click', function(e) {
+            if (e.target === cartModal) {
+                closeCartModal();
+            }
+        });
+        
+        orderModal.addEventListener('click', function(e) {
+            if (e.target === orderModal) {
+                closeOrderModal();
+            }
+        });
+        
+        // Add to Cart buttons
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const price = this.getAttribute('data-price');
+                addToCart(id, name, price);
+            });
+        });
+        
+        // Clear Cart button
+        clearCartButton.addEventListener('click', clearCart);
+        
+        // Checkout button
+        checkoutButton.addEventListener('click', openOrderModal);
+        
+        // Order Now buttons
+        orderNowButton.addEventListener('click', openOrderModal);
+        heroOrderButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            openOrderModal();
+        });
+        
+        // Floating WhatsApp button
+        floatingWhatsApp.addEventListener('click', function() {
+            if (cart.length === 0) {
+                showSuccessMessage('Please add items to your cart first');
+                openCartModal();
+            } else {
+                openOrderModal();
+            }
+        });
+        
+        // Order Method Selection
+        document.querySelectorAll('.order-method').forEach(method => {
+            method.addEventListener('click', function() {
+                const methodValue = this.getAttribute('data-method');
+                setOrderMethod(methodValue);
+            });
+        });
+        
+        // Order Form Submission
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const customerData = {
+                name: document.getElementById('customer-name').value,
+                phone: document.getElementById('customer-phone').value,
+                email: document.getElementById('customer-email').value,
+                address: document.getElementById('customer-address').value,
+                deliveryTime: document.getElementById('delivery-time').value
+            };
+            
+            submitOrder(customerData);
+        });
+        
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const categoryItems = document.querySelectorAll('.category-item');
+        
+        function setActiveLink(links, targetId) {
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === targetId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Handle main nav clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                setActiveLink(navLinks, targetId);
+                setActiveLink(categoryItems, targetId);
+                
+                const targetSection = document.querySelector(targetId);
+                if(targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 150,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Handle category nav clicks
+        categoryItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                setActiveLink(categoryItems, targetId);
+                setActiveLink(navLinks, targetId);
+                
+                const targetSection = document.querySelector(targetId);
+                if(targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 150,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', function() {
+            initCart();
+            loadDynamicProducts();
+            console.log("Errol Kotas Website Loaded!");
+            console.log("Order System Ready - Email: morganfrans6@gmail.com | WhatsApp: 0609050450");
+            console.log("Admin Panel: admin.html (Demo: admin/admin)");
+            
+            // Show welcome message
+            setTimeout(() => {
+                showSuccessMessage('Welcome to Errol Kotas! Start adding items to your cart.');
+            }, 1000);
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                // Press 'C' to open cart
+                if (e.key === 'c' || e.key === 'C') {
+                    if (!orderModal.classList.contains('active')) {
+                        openCartModal();
+                    }
+                }
+                // Press 'Escape' to close modals
+                if (e.key === 'Escape') {
+                    closeCartModal();
+                    closeOrderModal();
+                }
+            });
+            
+            // Add scroll animations for sections
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all product cards and other elements
+            document.querySelectorAll('.product-card, .testimonial-card, .feature').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+            
+            // Add product search functionality
+            const addSearchBar = document.createElement('div');
+            addSearchBar.innerHTML = `
+                <div id="search-bar" style="background-color: var(--kfc-gray); padding: 20px 0; margin-bottom: 30px; display: none;">
+                    <div class="container">
+                        <input type="text" id="search-input" placeholder="🔍 Search for products... (press / to search)" 
+                            style="width: 100%; padding: 12px 20px; border: 2px solid var(--kfc-red); border-radius: 50px; font-size: 1rem;">
+                    </div>
+                </div>
+            `;
+            document.querySelector('.hero').insertAdjacentHTML('afterend', addSearchBar.innerHTML);
+            
+            // Search functionality
+            const searchInput = document.getElementById('search-input');
+            const searchBar = document.getElementById('search-bar');
+            
+            // Press '/' to focus search
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '/') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+            
+            // Close search results when clicking elsewhere
+            document.addEventListener('click', function(e) {
+                if (!e.target.matches('#search-input')) {
+                    // Hide search bar on click outside
+                }
+            });
+            
+            // Add active state indicators
+            updateActiveNavigation();
+            window.addEventListener('scroll', updateActiveNavigation);
+        });
+        
+        // Load Products Dynamically
+        async function loadDynamicProducts() {
+            // Load products from API
+            const products = await loadProductsFromAPI();
+            
+            // Load products for each section
+            await loadSectionProducts('kota-chips');
+            await loadSectionProducts('drinks');
+            await loadSectionProducts('burger');
+            await loadSectionProducts('pizza');
+            await loadSectionProducts('snacks');
+            
+            // Re-attach event listeners to dynamically added buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = this.getAttribute('data-price');
+                    addToCart(id, name, price);
+                });
+            });
+        }
+        
+        // Load Products for a Section
+        async function loadSectionProducts(sectionId) {
+            const products = await getProductsByCategory(sectionId);
+            const gridContainer = document.querySelector(`#${sectionId} .products-grid`);
+            
+            if (!gridContainer) return;
+            
+            // If no products, show empty message
+            if (products.length === 0) {
+                gridContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;"><p>No products available yet. Check back soon!</p></div>';
+                return;
+            }
+            
+            // Clear existing products and rebuild
+            gridContainer.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-img">
+                        ${product.image ? 
+                            `<img src="${product.image}" style="width: 100%; height: 100%; object-fit: cover;">` : 
+                            `<i class="fas fa-${getProductIcon(product.id)}"></i>`
+                        }
+                        ${product.badge ? `<div class="product-badge">${product.badge.toUpperCase()}</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">
+                            <span class="price">R${parseFloat(product.price).toFixed(2)}</span>
+                            <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                                <i class="fas fa-cart-plus"></i>
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-attach event listeners for newly added buttons
+            gridContainer.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = this.getAttribute('data-price');
+                    addToCart(id, name, price);
+                });
+            });
+        }
+        
+        // Update active navigation based on scroll position
+        function updateActiveNavigation() {
+            const sections = document.querySelectorAll('.products-section, .testimonials-section');
+            const navLinks = document.querySelectorAll('.nav-links a, .category-item');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const scrollPosition = window.scrollY;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    const sectionId = '#' + section.id;
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === sectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

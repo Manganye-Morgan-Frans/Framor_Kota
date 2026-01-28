@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Framor Kotas Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --kfc-red: #E4002B;
+            --kfc-black: #000000;
+            --kfc-gold: #FFC72C;
+            --kfc-gray: #F5F5F5;
+            --kfc-dark-gray: #333333
+            --success-green: #28a745;
+            --danger-red: #dc3545;
+            --warning-orange: #ffc107;
+            --info-blue: #17a2b8;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .admin-header h1 {
+            color: var(--kfc-red);
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-header h1 i {
+            font-size: 2.8rem;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-primary, .btn-secondary, .btn-danger, .btn-success {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--kfc-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #cc0023;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(228, 0, 43, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--kfc-black);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #222;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-red);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-success {
+            background-color: var(--success-green);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .logout-btn {
+            background-color: var(--danger-red);
+        }
+
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+            border-left: 5px solid var(--kfc-red);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--kfc-red);
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--kfc-black);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: var(--kfc-red);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--kfc-gold);
+        }
+
+        .card-title i {
+            font-size: 2rem;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--kfc-dark-gray);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--kfc-red);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(228, 0, 43, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Products Table */
+        .products-table-container {
+            overflow-x: auto;
+        }
+
+        .products-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .products-table th {
+            background-color: var(--kfc-red);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            position: sticky;
+            top: 0;
+        }
+
+        .products-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .products-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .products-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-edit, .btn-delete {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+
+        .btn-edit {
+            background-color: var(--info-blue);
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #138496;
+        }
+
+        .btn-delete {
+            background-color: var(--danger-red);
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+        .product-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-bestseller {
+            background-color: rgba(228, 0, 43, 0.2);
+            color: var(--kfc-red);
+        }
+
+        .badge-new {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: var(--success-green);
+        }
+
+        .badge-popular {
+            background-color: rgba(255, 199, 44, 0.2);
+            color: #ff9800;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--kfc-gold);
+        }
+
+        .modal-header h2 {
+            color: var(--kfc-red);
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--kfc-red);
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-green);
+            border-left: 4px solid var(--success-green);
+        }
+
+        .alert-error {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger-red);
+            border-left: 4px solid var(--danger-red);
+        }
+
+        .alert-info {
+            background-color: rgba(23, 162, 184, 0.1);
+            color: var(--info-blue);
+            border-left: 4px solid var(--info-blue);
+        }
+
+        .alert i {
+            font-size: 1.2rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Login Screen */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-card {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-card h1 {
+            color: var(--kfc-red);
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .login-card p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .login-form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--kfc-dark-gray);
+        }
+
+        .login-form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .login-form-group input:focus {
+            border-color: var(--kfc-red);
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--kfc-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #cc0023;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(228, 0, 43, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .admin-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-table {
+                font-size: 0.85rem;
+            }
+
+            .products-table td, .products-table th {
+                padding: 10px 5px;
+            }
+
+            .modal-content {
+                padding: 25px;
+            }
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--kfc-red);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .category-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            padding: 10px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--kfc-dark-gray);
+        }
+
+        .category-btn.active {
+            background-color: var(--kfc-red);
+            color: white;
+            border-color: var(--kfc-red);
+        }
+
+        .category-btn:hover {
+            border-color: var(--kfc-red);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <h1><i class="fas fa-shield-alt"></i> Admin Panel</h1>
+            <p>Framor Kotas Management System</p>
+            <form id="login-form">
+                <div class="login-form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="admin" required>
+                </div>
+                <div class="login-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #999;">
+                    Demo: admin / admin
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" style="display: none;">
+        <div class="admin-container">
+            <!-- Header -->
+            <div class="admin-header">
+                <h1><i class="fas fa-crown"></i> Framor Kotas Admin</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" id="add-product-btn">
+                        <i class="fas fa-plus-circle"></i> Add Product
+                    </button>
+                    <button class="btn-danger logout-btn" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-boxes"></i>
+                    <div class="stat-number" id="total-products">0</div>
+                    <div class="stat-label">Total Products</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <div class="stat-number" id="bestsellers-count">0</div>
+                    <div class="stat-label">Bestsellers</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-bolt"></i>
+                    <div class="stat-number" id="new-products-count">0</div>
+                    <div class="stat-label">New Products</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-fire"></i>
+                    <div class="stat-number" id="popular-count">0</div>
+                    <div class="stat-label">Popular Items</div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <!-- Filters -->
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-filter"></i> Filters
+                    </div>
+                    
+                    <div class="search-box">
+                        <input type="text" id="search-products" placeholder="Search products...">
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--kfc-dark-gray);">Filter by Category:</label>
+                    <div class="category-select">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="kota">Kota & Chips</button>
+                        <button class="category-btn" data-category="drinks">Drinks</button>
+                        <button class="category-btn" data-category="burger">Burgers</button>
+                        <button class="category-btn" data-category="pizza">Pizzas</button>
+                        <button class="category-btn" data-category="snacks">Snacks</button>
+                    </div>
+
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--kfc-dark-gray); margin-top: 20px;">Filter by Badge:</label>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="category-btn" data-badge="bestseller" style="text-align: left;">
+                            <i class="fas fa-crown"></i> Bestseller
+                        </button>
+                        <button class="category-btn" data-badge="new" style="text-align: left;">
+                            <i class="fas fa-star"></i> New
+                        </button>
+                        <button class="category-btn" data-badge="popular" style="text-align: left;">
+                            <i class="fas fa-fire"></i> Popular
+                        </button>
+                    </div>
+
+                    <div id="alert-container" style="margin-top: 20px;"></div>
+                </div>
+
+                <!-- Products List -->
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-list"></i> Products List
+                    </div>
+
+                    <div class="products-table-container">
+                        <table class="products-table" id="products-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Badge</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-tbody">
+                                <tr>
+                                    <td colspan="6" class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <h3>No products yet</h3>
+                                        <p>Start by adding your first product!</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Product</h2>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+
+            <form id="product-form">
+                <div class="form-group">
+                    <label for="product-name">Product Name *</label>
+                    <input type="text" id="product-name" required placeholder="e.g., Classic Kota">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-category">Category *</label>
+                    <select id="product-category" required>
+                        <option value="">Select a category</option>
+                        <option value="kota">Kota & Chips</option>
+                        <option value="drinks">Drinks</option>
+                        <option value="burger">Burgers</option>
+                        <option value="pizza">Pizzas</option>
+                        <option value="snacks">Snacks</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-price">Price (R) *</label>
+                        <input type="number" id="product-price" required placeholder="45.00" step="0.01" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-badge">Badge (Optional)</label>
+                        <select id="product-badge">
+                            <option value="">None</option>
+                            <option value="bestseller">Bestseller</option>
+                            <option value="new">New</option>
+                            <option value="popular">Popular</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description">Description *</label>
+                    <textarea id="product-description" required placeholder="Describe your product..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-image">Product Image (Optional)</label>
+                    <input type="file" id="product-image" accept="image/*" placeholder="Select an image">
+                    <small style="color: #999; display: block; margin-top: 5px;">📸 Supported: JPG, PNG, GIF (Max 2MB)</small>
+                    <div id="image-preview" style="margin-top: 10px; display: none;">
+                        <img id="preview-img" style="max-width: 100%; max-height: 150px; border-radius: 8px; border: 2px solid var(--kfc-red);">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <button type="submit" class="btn-primary" style="width: 100%;">
+                        <i class="fas fa-save"></i> Save Product
+                    </button>
+                    <button type="button" class="btn-secondary" id="cancel-modal" style="width: 100%;">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Admin Credentials
+        const ADMIN_USERNAME = 'admin';
+        const ADMIN_PASSWORD = 'admin';
+        const API_URL = 'http://localhost:3000/api';
+        let currentEditId = null;
+        let currentFilter = 'all';
+        let currentBadgeFilter = null;
+        let currentImageData = null;
+
+        // Product Icon Map
+        const categoryIcons = {
+            'kota': 'hotdog',
+            'drinks': 'wine-bottle',
+            'burger': 'hamburger',
+            'pizza': 'pizza-slice',
+            'snacks': 'cookie'
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+            
+            if (isLoggedIn) {
+                showDashboard();
+            } else {
+                showLogin();
+            }
+            
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Login
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+            
+            // Logout
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', handleLogout);
+            }
+            
+            // Product Management
+            const addBtn = document.getElementById('add-product-btn');
+            if (addBtn) {
+                addBtn.addEventListener('click', openAddProductModal);
+            }
+            
+            const closeBtn = document.getElementById('close-modal');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            const cancelBtn = document.getElementById('cancel-modal');
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', closeModal);
+            }
+            
+            // SAVE PRODUCT FORM - THIS IS THE CRITICAL ONE
+            const productForm = document.getElementById('product-form');
+            if (productForm) {
+                productForm.removeEventListener('submit', handleSaveProduct); // Remove any existing listeners
+                productForm.addEventListener('submit', function(e) {
+                    console.log('Form submitted!');
+                    handleSaveProduct(e);
+                });
+            }
+            
+            // Search and Filter
+            document.getElementById('search-products').addEventListener('input', filterProducts);
+            
+            // Category Filters
+            document.querySelectorAll('.category-btn[data-category]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.category-btn[data-category]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-category');
+                    filterProducts();
+                });
+            });
+            
+            // Badge Filters
+            document.querySelectorAll('.category-btn[data-badge]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const badge = this.getAttribute('data-badge');
+                    if (currentBadgeFilter === badge) {
+                        currentBadgeFilter = null;
+                        this.classList.remove('active');
+                    } else {
+                        document.querySelectorAll('.category-btn[data-badge]').forEach(b => b.classList.remove('active'));
+                        currentBadgeFilter = badge;
+                        this.classList.add('active');
+                    }
+                    filterProducts();
+                });
+            });
+            
+            // Modal close on outside click
+            document.getElementById('product-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // Image upload handler
+            document.getElementById('product-image').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Check file size (max 10MB)
+                    if (file.size > 10 * 1024 * 1024) {
+                        showAlert('Image size must be less than 10MB!', 'error');
+                        this.value = '';
+                        currentImageData = null;
+                        document.getElementById('image-preview').style.display = 'none';
+                        return;
+                    }
+                    
+                    // Read file as preview
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        currentImageData = file; // Store the File object directly
+                        // Show preview
+                        const preview = document.getElementById('preview-img');
+                        preview.src = event.target.result;
+                        document.getElementById('image-preview').style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // Image Compression Function (No longer needed with backend)
+        function compressImage(imageSrc, callback) {
+            // This function is kept for reference but no longer used
+            // Images are now stored on the server and not converted to base64
+            callback(imageSrc);
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                showDashboard();
+            } else {
+                showAlert('Invalid username or password!', 'error');
+                document.getElementById('password').value = '';
+            }
+        }
+
+        function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.removeItem('adminLoggedIn');
+                document.getElementById('login-form').reset();
+                showLogin();
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('admin-dashboard').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('admin-dashboard').style.display = 'block';
+            loadProducts();
+            updateStats();
+        }
+
+        // Product Management
+        async function loadProducts() {
+            try {
+                const response = await fetch(`${API_URL}/products`);
+                const products = await response.json();
+                filterProducts();
+            } catch (error) {
+                showAlert('Failed to load products from server', 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        async function getProducts() {
+            try {
+                const response = await fetch(`${API_URL}/products`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                return await response.json();
+            } catch (error) {
+                showAlert('Failed to load products', 'error');
+                return [];
+            }
+        }
+
+        async function saveProducts(products) {
+            // No longer used - products are saved via API calls
+        }
+
+        async function filterProducts() {
+            const products = await getProducts();
+            const searchTerm = document.getElementById('search-products').value.toLowerCase();
+            
+            let filtered = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                                    product.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = currentFilter === 'all' || product.category === currentFilter;
+                const matchesBadge = !currentBadgeFilter || product.badge === currentBadgeFilter;
+                
+                return matchesSearch && matchesCategory && matchesBadge;
+            });
+
+            displayProducts(filtered);
+        }
+
+        function displayProducts(products) {
+            const tbody = document.getElementById('products-tbody');
+            
+            if (products.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <h3>No products found</h3>
+                            <p>Try adjusting your filters</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = products.map(product => `
+                <tr>
+                    <td><strong>${product.id}</strong></td>
+                    <td>${product.name}</td>
+                    <td><small>${product.category}</small></td>
+                    <td><strong>R${parseFloat(product.price).toFixed(2)}</strong></td>
+                    <td>
+                        ${product.badge ? 
+                            `<span class="product-badge badge-${product.badge}">${product.badge.toUpperCase()}</span>` 
+                            : '<small style="color: #999;">-</small>'}
+                    </td>
+                    <td>
+                        <div class="product-actions">
+                            <button class="btn-edit" onclick="openEditProductModal('${product.id}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-delete" onclick="deleteProduct('${product.id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openAddProductModal() {
+            currentEditId = null;
+            currentImageData = null;
+            document.getElementById('modal-title').textContent = 'Add New Product';
+            document.getElementById('product-form').reset();
+            document.getElementById('image-preview').style.display = 'none';
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        async function openEditProductModal(productId) {
+            const products = await getProducts();
+            const product = products.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            currentEditId = productId;
+            currentImageData = null; // Will be handled separately
+            document.getElementById('modal-title').textContent = 'Edit Product';
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('product-badge').value = product.badge || '';
+            document.getElementById('product-description').value = product.description;
+            
+            // Show image preview if exists
+            if (product.image) {
+                const preview = document.getElementById('preview-img');
+                preview.src = product.image;
+                document.getElementById('image-preview').style.display = 'block';
+            } else {
+                document.getElementById('image-preview').style.display = 'none';
+            }
+            
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('active');
+            currentEditId = null;
+            currentImageData = null;
+            document.getElementById('product-form').reset();
+            document.getElementById('product-image').value = '';
+            document.getElementById('image-preview').style.display = 'none';
+        }
+
+        async function handleSaveProduct(e) {
+            e.preventDefault();
+            console.log('Save product clicked!');
+            
+            const name = document.getElementById('product-name').value.trim();
+            const category = document.getElementById('product-category').value;
+            const price = document.getElementById('product-price').value;
+            const badge = document.getElementById('product-badge').value;
+            const description = document.getElementById('product-description').value.trim();
+
+            // Validate required fields
+            if (!name) {
+                showAlert('Product name is required!', 'error');
+                return;
+            }
+            if (!category) {
+                showAlert('Please select a category!', 'error');
+                return;
+            }
+            if (!price || parseFloat(price) <= 0) {
+                showAlert('Please enter a valid price!', 'error');
+                return;
+            }
+            if (!description) {
+                showAlert('Product description is required!', 'error');
+                return;
+            }
+
+            try {
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('category', category);
+                formData.append('price', price);
+                formData.append('badge', badge || '');
+                formData.append('description', description);
+
+                if (currentImageData) {
+                    formData.append('image', currentImageData);
+                }
+
+                let response;
+                let errorMessage = '';
+                
+                if (currentEditId) {
+                    // Update product
+                    console.log('Updating product:', currentEditId);
+                    response = await fetch(`${API_URL}/products/${currentEditId}`, {
+                        method: 'PUT',
+                        body: formData
+                    });
+                    errorMessage = 'Failed to update product';
+                } else {
+                    // Add new product
+                    console.log('Adding new product');
+                    response = await fetch(`${API_URL}/products`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    errorMessage = 'Failed to add product';
+                }
+                
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || errorMessage);
+                }
+                
+                const resultData = await response.json();
+                console.log('Success:', resultData);
+                
+                showAlert(currentEditId ? 'Product updated successfully!' : 'Product added successfully!', 'success');
+                closeModal();
+                loadProducts();
+                updateStats();
+                
+            } catch (error) {
+                console.error('Error saving product:', error);
+                showAlert(error.message || 'Failed to save product', 'error');
+            }
+        }
+
+        async function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product? This action cannot be undone.')) {
+                try {
+                    const response = await fetch(`${API_URL}/products/${productId}`, {
+                        method: 'DELETE'
+                    });
+
+                    if (response.ok) {
+                        showAlert('Product deleted successfully!', 'success');
+                        loadProducts();
+                        updateStats();
+                    } else {
+                        throw new Error('Failed to delete product');
+                    }
+                } catch (error) {
+                    showAlert(error.message || 'Failed to delete product', 'error');
+                    console.error('Error:', error);
+                }
+            }
+        }
+
+        async function updateStats() {
+            try {
+                const products = await getProducts();
+                
+                document.getElementById('total-products').textContent = products.length;
+                document.getElementById('bestsellers-count').textContent = products.filter(p => p.badge === 'bestseller').length;
+                document.getElementById('new-products-count').textContent = products.filter(p => p.badge === 'new').length;
+                document.getElementById('popular-count').textContent = products.filter(p => p.badge === 'popular').length;
+            } catch (error) {
+                console.error('Error updating stats:', error);
+            }
+        }
+
+        function showAlert(message, type = 'success') {
+            const container = document.getElementById('alert-container');
+            const icons = {
+                success: 'check-circle',
+                error: 'exclamation-circle',
+                info: 'info-circle'
+            };
+            
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${icons[type]}"></i>
+                <span>${message}</span>
+            `;
+            
+            container.innerHTML = '';
+            container.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
